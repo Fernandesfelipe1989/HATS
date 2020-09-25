@@ -10,9 +10,7 @@ def converter_to_base(S, b, k):
                 div = div // b
             else:
                 converter = "0" + converter
-
         number_in_new_base.append(str(converter))
-
     return number_in_new_base
 
 
@@ -53,6 +51,10 @@ def base_mul(number, b):
     return base_sum(number_mult, b)
 
 
+def convert_base_to_base(n, bi, bf):
+    pass
+
+
 def input_data():
     while True:
         try:
@@ -90,9 +92,9 @@ def model():
 
 
 def test():
-    b = 2
-    k = 8
-    n = converter_to_base([4, 5, 3, 8], b, k)
+    b = 10
+    k = 2
+    n = converter_to_base([5, 5], b, k)
     print(n)
     first = base_sum(n,  b)
     print(first)
