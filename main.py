@@ -33,24 +33,33 @@ def base_sum(number, b):
 
 
 def base_mul(number, b):
-    result = ''
+    number_mult = []
     overflow = 0
     sum = 0
-    res = 0
     for a in range(len(number[0])):
+        result = ''
         j = int(number[0][-a - 1])
         for c in range(len(number[1])):
             d = int(number[1][-c - 1])
             sum = j * pow(b, a) * d * pow(b, c) + overflow
-            if sum > (b - 1) and a < len(number[0])-1:
-                while sum >= b:
-                    sum -= b
-                    overflow += 1
-            else:
-                overflow = 0
-            res = sum
-            result = str(res) + result
-    return result
+            w = pow(b, c)
+            overflow = sum//w
+
+            sum = sum % w
+            #if sum > (b - 1):
+            #    overflow = sum//b
+            #    sum = sum%b
+                    #sum -= b
+                    #overflow += 1
+            #else:
+            #    overflow = 0
+            #if c != len(number[1])-1:
+            result = str(sum) + result
+            #else:
+            #    result = str(overflow) + result
+        number_mult.append(result)
+
+    return base_sum(number_mult, b)
 
 
 def input_data():
@@ -90,16 +99,19 @@ def model():
 
 
 def test():
-    n = converter_to_base([5, 9], 10, 8)
+    b = 10
+    k = 3
+    n = converter_to_base([13, 10], b, k)
     print(n)
-    first =base_sum(n, 10)
+    first = base_sum(n, 10)
     print(first)
-    second = converter_to_base([1000], 10, 8)
+    second = converter_to_base([1000], b, k)
     second.append(first)
     print(second)
-    result = base_sum(second, 10)
+    result = base_sum(second, b)
     print(result)
-    mult= base_mul(n, 10)
+    print(n)
+    mult= base_mul(n, b)
     print(mult)
 
 
