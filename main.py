@@ -41,11 +41,9 @@ def base_mul(number, b):
         j = int(number[0][-a - 1])
         for c in range(len(number[1])):
             d = int(number[1][-c - 1])
-            sum = j * pow(b, a) * d * pow(b, c) + overflow
-            w = pow(b, c)
-            overflow = sum//w
-
-            sum = sum % w
+            sum = (j * pow(b, a) ) * d + overflow
+            overflow = sum//b
+            sum = sum % b
             #if sum > (b - 1):
             #    overflow = sum//b
             #    sum = sum%b
@@ -99,9 +97,9 @@ def model():
 
 
 def test():
-    b = 10
-    k = 3
-    n = converter_to_base([13, 10], b, k)
+    b = 8
+    k = 8
+    n = converter_to_base([4, 5], b, k)
     print(n)
     first = base_sum(n, 10)
     print(first)
