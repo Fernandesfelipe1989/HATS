@@ -52,7 +52,13 @@ def base_mul(number, b):
 
 
 def convert_base_to_base(n, bi, bf):
-    pass
+    number_base = []
+    for a in range(len(n)):
+        sum = 0
+        for c in range(len(n[a])):
+            sum += int(n[a][-c -1])*pow(bi, c)
+        number_base.append(sum)
+    return converter_to_base(number_base, bf, len(n[0]))
 
 
 def input_data():
@@ -106,6 +112,8 @@ def test():
     #print(n)
     mult= base_mul(n, b)
     print(mult)
+    convert = convert_base_to_base(['0011001000', '1111101000'], 2, 3)
+    print(convert)
 
 
 def main():
