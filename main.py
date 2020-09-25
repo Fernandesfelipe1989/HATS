@@ -20,41 +20,34 @@ def base_sum(number, b):
     result = ''
     overflow = 0
     for a in range(len(number[0])):
-        first = number[0][-a - 1]
-        second = number[1][-a - 1]
-        sum = int(number[0][-a - 1]) + int(number[1][-a - 1]) + overflow
-        if sum > (b - 1):
-            sum -= b
-            overflow = 1
-        else:
-            overflow = 0
-        result = str(sum) + result
+        sum = 0
+        for c in range(len(number)):
+            sum += int(number[c][-a - 1])
+        sum += overflow
+        overflow = sum // b
+        div = sum % b
+        #first = number[0][-a - 1]
+        #second = number[1][-a - 1]
+        #sum = int(number[0][-a - 1]) + int(number[1][-a - 1]) + overflow
+        #if sum > (b - 1):
+         #   sum -= b
+         #   overflow = 1
+        #else:
+         #   overflow = 0
+        result = str(div ) + result
     return result
 
 
 def base_mul(number, b):
     number_mult = []
     overflow = 0
-    sum = 0
     for a in range(len(number[0])):
         result = ''
-        j = int(number[0][-a - 1])
         for c in range(len(number[1])):
-            d = int(number[1][-c - 1])
-            sum = (j * pow(b, a) ) * d + overflow
+            sum = ((int(number[0][-a - 1])) * pow(b, a)) * (int(number[1][-c - 1])) + overflow
             overflow = sum//b
-            sum = sum % b
-            #if sum > (b - 1):
-            #    overflow = sum//b
-            #    sum = sum%b
-                    #sum -= b
-                    #overflow += 1
-            #else:
-            #    overflow = 0
-            #if c != len(number[1])-1:
-            result = str(sum) + result
-            #else:
-            #    result = str(overflow) + result
+            div = sum % b
+            result = str(div) + result
         number_mult.append(result)
 
     return base_sum(number_mult, b)
@@ -97,18 +90,18 @@ def model():
 
 
 def test():
-    b = 8
+    b = 2
     k = 8
-    n = converter_to_base([4, 5], b, k)
+    n = converter_to_base([4, 5, 3, 8], b, k)
     print(n)
-    first = base_sum(n, 10)
+    first = base_sum(n,  b)
     print(first)
-    second = converter_to_base([1000], b, k)
-    second.append(first)
-    print(second)
-    result = base_sum(second, b)
-    print(result)
-    print(n)
+    #second = converter_to_base([1000], b, k)
+    #second.append(first)
+    #print(second)
+    #result = base_sum(second, b)
+    #print(result)
+    #print(n)
     mult= base_mul(n, b)
     print(mult)
 
